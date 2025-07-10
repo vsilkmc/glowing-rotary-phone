@@ -25,7 +25,7 @@ powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -Command ^
         $result = Await ($tetheringManager.StartTetheringAsync()) ([Windows.Networking.NetworkOperators.NetworkOperatorTetheringOperationResult]); ^
         if ($result.Status -ne 'Success') { ^
             Add-Type -AssemblyName System.Windows.Forms; ^
-            [System.Windows.Forms.MessageBox]::Show(\"Hotspot failed: $($result.Status) - $($result.AdditionalErrorMessage)\", 'Hotspot Error', 'OK', 'Error') ^
+            [System.Windows.Forms.MessageBox]::Show(\"failed: $($result.Status) - $($result.AdditionalErrorMessage)\", 'Error', 'OK', 'Error') ^
         } else { ^
             Start-Sleep -Seconds 2; ^
             Add-Type -TypeDefinition 'using System;using System.Runtime.InteropServices;public class M{[DllImport(\"user32.dll\")]public static extern int SendMessage(IntPtr h,int m,int w,int l);public static void T(){SendMessage((IntPtr)0xFFFF,0x0112,0xF170,2);}}'; ^
